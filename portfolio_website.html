@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Marketing Specialist | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        black: {
+                            DEFAULT: '#000000',
+                            eerie: '#151515',
+                            jet: '#0a0a0a',
+                            raisin: '#202020',
+                            space: '#050505',
+                        },
+                        accent: {
+                            DEFAULT: '#00f2fe',
+                            hover: '#4facfe',
+                            glow: 'rgba(0, 242, 254, 0.5)',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+
+        /* Typography & Utilities */
+        .text-gradient {
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-gradient-accent {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        }
+
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: linear-gradient(180deg, rgba(32, 32, 32, 0.4) 0%, rgba(21, 21, 21, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px -5px rgba(0, 242, 254, 0.15);
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* Reveal Directions */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+        .reveal-left.active, .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Marquee */
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            min-width: 100%;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        /* Text Rotator */
+        .text-rotator {
+            display: inline-flex;
+            flex-direction: column;
+            height: 1.2em; /* Adjusted to prevent clipping */
+            overflow: hidden;
+            vertical-align: bottom;
+            line-height: 1.1;
+        }
+        .text-rotator-inner {
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Accordion */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            opacity: 0;
+        }
+        .accordion-content.open {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #202020; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4facfe; }
+
+        /* Fancy Hover Button */
+        .btn-glow {
+            position: relative;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            filter: blur(15px);
+        }
+        .btn-glow:hover::before {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-black:space">
+
+    <!-- Ambient Background Effects -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-accent opacity-10 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-blue-600 opacity-10 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[500px] h-[500px] bg-purple-600 opacity-10 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold tracking-tighter">
+                        <span class="text-white">Email</span><span class="text-gradient">Pro</span>.
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="text-gray-300 hover:text-accent transition-colors duration-300 text-sm font-medium">Services</a>
+                        <a href="#process" class="text-gray-300 hover:text-accent transition-colors duration-300 text-sm font-medium">Process</a>
+                        <a href="#portfolio" class="text-gray-300 hover:text-accent transition-colors duration-300 text-sm font-medium">Portfolio</a>
+                        <a href="#testimonials" class="text-gray-300 hover:text-accent transition-colors duration-300 text-sm font-medium">Reviews</a>
+                        <a href="#about" class="text-gray-300 hover:text-accent transition-colors duration-300 text-sm font-medium">About</a>
+                        <a href="#faq" class="text-gray-300 hover:text-accent transition-colors duration-300 text-sm font-medium">FAQ</a>
+                        <a href="#contact" class="bg-gradient-accent btn-glow text-black:space px-5 py-2.5 rounded-full text-sm font-bold shadow-lg transform hover:scale-105 transition-all duration-300">
+                            Let's Talk
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-black:jet border-b border-gray-800" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#services" class="text-gray-300 hover:text-accent block px-3 py-2 text-base font-medium">Services</a>
+                <a href="#process" class="text-gray-300 hover:text-accent block px-3 py-2 text-base font-medium">Process</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-accent block px-3 py-2 text-base font-medium">Portfolio</a>
+                <a href="#testimonials" class="text-gray-300 hover:text-accent block px-3 py-2 text-base font-medium">Reviews</a>
+                <a href="#about" class="text-gray-300 hover:text-accent block px-3 py-2 text-base font-medium">About</a>
+                <a href="#faq" class="text-gray-300 hover:text-accent block px-3 py-2 text-base font-medium">FAQ</a>
+                <a href="#contact" class="text-accent block px-3 py-2 text-base font-bold">Let's Talk</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="max-w-2xl reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                        Available for Freelance
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+                        Transforming Clicks into 
+                        <span class="text-gradient text-rotator block lg:inline-block h-[1.2em] overflow-hidden align-bottom">
+                            <span class="text-rotator-inner" id="rotator">
+                                <span class="block">Clients.</span>
+                                <span class="block">Revenue.</span>
+                                <span class="block">Growth.</span>
+                                <span class="block">Clients.</span>
+                            </span>
+                        </span>
+                    </h1>
+                    <p class="text-lg lg:text-xl text-gray-400 mb-8 max-w-lg leading-relaxed">
+                        I build data-driven email marketing strategies, stunning designs, and advanced automation flows that scale revenue for modern brands.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#portfolio" class="bg-gradient-accent btn-glow text-black:space px-8 py-4 rounded-full text-base font-bold shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                            View My Work <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#services" class="px-8 py-4 rounded-full text-base font-bold text-white border border-gray-700 hover:border-accent hover:text-accent hover:bg-accent/5 transition-all duration-300">
+                            Explore Services
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 pt-8 border-t border-gray-800 flex items-center gap-8 reveal delay-200">
+                        <div>
+                            <p class="text-3xl font-bold text-white">45+</p>
+                            <p class="text-sm text-gray-500 mt-1">Brands Scaled</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-white">99%</p>
+                            <p class="text-sm text-gray-500 mt-1">Client Satisfaction</p>
+                        </div>
+                        <div>
+                            <div class="flex gap-2 text-yellow-500 mt-2">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Top Rated on Upwork</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Visual -->
+                <div class="relative hidden lg:block reveal delay-300">
+                    <div class="relative w-full aspect-square rounded-full border border-gray-800 flex items-center justify-center bg-black:eerie/50 backdrop-blur-sm">
+                        <!-- Abstract UI Elements floating -->
+                        <div class="absolute top-10 right-10 glass-card p-4 rounded-2xl animate-bounce" style="animation-duration: 4s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+                                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Open Rate</p>
+                                    <p class="text-lg font-bold text-white">+ 64.2%</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute bottom-20 left-0 glass-card p-4 rounded-2xl animate-bounce" style="animation-duration: 5s; animation-delay: 1s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent">
+                                    <i data-lucide="mail-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Flow Triggered</p>
+                                    <p class="text-sm font-bold text-white">Welcome Series</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Center Graphic -->
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" alt="Marketing Abstract" class="w-2/3 h-2/3 object-cover rounded-full opacity-60 mix-blend-luminosity border-4 border-gray-900 shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full bg-black:jet/60 backdrop-blur-md border-t border-gray-900 py-4 z-20">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="marquee-container">
+                    <div class="marquee-content flex items-center justify-around gap-16 pr-16">
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="mail" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Klaviyo</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="send" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Mailchimp</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="shopping-bag" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Shopify</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="figma" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Figma</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="layout-template" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">HTML/CSS</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="zap" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">ActiveCampaign</span></div>
+                    </div>
+                    <!-- Duplicate for infinite effect -->
+                    <div class="marquee-content flex items-center justify-around gap-16 pr-16" aria-hidden="true">
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="mail" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Klaviyo</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="send" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Mailchimp</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="shopping-bag" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Shopify</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="figma" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">Figma</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="layout-template" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">HTML/CSS</span></div>
+                        <div class="flex items-center gap-3 text-gray-500 hover:text-accent transition-colors"><i data-lucide="zap" class="w-5 h-5"></i> <span class="font-bold text-sm tracking-widest uppercase">ActiveCampaign</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-black:jet relative border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-accent font-semibold tracking-wide uppercase text-sm mb-3">Core Expertise</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">End-to-End <span class="text-gradient">Email Solutions</span></h3>
+                <p class="text-gray-400 text-lg">I don't just send emails. I craft comprehensive strategies and designs that engage your audience and drive measurable revenue.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card p-8 rounded-3xl reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 text-accent border border-accent/20">
+                        <i data-lucide="pen-tool" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Email Design</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Pixel-perfect, responsive HTML emails that look stunning on every device. Custom templates designed to match your brand identity and convert.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-accent"></i> Custom HTML/CSS</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-accent"></i> Dark Mode Optimized</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-accent"></i> Responsive Layouts</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card p-8 rounded-3xl reveal delay-100">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 text-purple-400 border border-purple-500/20">
+                        <i data-lucide="git-merge" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Advanced Automation</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Set it and forget it. I build complex, behavior-triggered flows (Klaviyo, Mailchimp, ActiveCampaign) that nurture leads while you sleep.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Welcome & Onboarding</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Abandoned Cart Recovery</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Win-back Campaigns</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card p-8 rounded-3xl reveal delay-200">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 text-blue-400 border border-blue-500/20">
+                        <i data-lucide="bar-chart-3" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Strategy & Analytics</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Stop guessing. I implement rigorous A/B testing, audience segmentation, and list cleaning to ensure maximum deliverability and ROI.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> A/B Testing</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Advanced Segmentation</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Deliverability Audits</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-black:eerie relative border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-accent font-semibold tracking-wide uppercase text-sm mb-3">How I Work</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">A Proven <span class="text-gradient">Process</span></h3>
+                <p class="text-gray-400 text-lg">Systematic execution from the first audit to the final launch, ensuring every email drives maximum impact.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-[40px] left-1/2 w-3/4 h-[2px] bg-gray-800 -translate-x-1/2 z-0"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 text-center reveal-left">
+                    <div class="w-20 h-20 mx-auto bg-black:space rounded-full border-2 border-gray-700 flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-accent hover:shadow-[0_0_30px_rgba(0,242,254,0.3)] hover:-translate-y-2 group">
+                        <span class="text-2xl font-black text-gray-600 group-hover:text-accent transition-colors">01</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Deep Audit</h4>
+                    <p class="text-sm text-gray-400">Analyzing your current metrics, list health, and identifying revenue leakages.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 text-center reveal-left delay-100">
+                    <div class="w-20 h-20 mx-auto bg-black:space rounded-full border-2 border-gray-700 flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-accent hover:shadow-[0_0_30px_rgba(0,242,254,0.3)] hover:-translate-y-2 group">
+                        <span class="text-2xl font-black text-gray-600 group-hover:text-accent transition-colors">02</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Strategy</h4>
+                    <p class="text-sm text-gray-400">Mapping out custom automation flows and campaign calendars tailored to your goals.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 text-center reveal-right delay-200">
+                    <div class="w-20 h-20 mx-auto bg-black:space rounded-full border-2 border-gray-700 flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-accent hover:shadow-[0_0_30px_rgba(0,242,254,0.3)] hover:-translate-y-2 group">
+                        <span class="text-2xl font-black text-gray-600 group-hover:text-accent transition-colors">03</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Design & Copy</h4>
+                    <p class="text-sm text-gray-400">Crafting high-converting copy and pixel-perfect designs that align with your brand.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative z-10 text-center reveal-right delay-300">
+                    <div class="w-20 h-20 mx-auto bg-black:space rounded-full border-2 border-accent flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(0,242,254,0.2)] transition-all duration-500 hover:bg-accent hover:shadow-[0_0_40px_rgba(0,242,254,0.5)] hover:-translate-y-2 group cursor-pointer">
+                        <i data-lucide="rocket" class="w-8 h-8 text-accent group-hover:text-black:space transition-colors"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Launch & Optimize</h4>
+                    <p class="text-sm text-gray-400">Deploying campaigns, monitoring performance, and split-testing for continuous growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 bg-black:space relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
+                <div class="max-w-2xl">
+                    <h2 class="text-accent font-semibold tracking-wide uppercase text-sm mb-3">Selected Work</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold">Recent <span class="text-gradient">Campaigns</span></h3>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <a href="#" class="text-gray-300 hover:text-accent flex items-center gap-2 transition-colors duration-300">
+                        View All Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Project 1 -->
+                <div class="group cursor-pointer reveal">
+                    <div class="relative overflow-hidden rounded-3xl aspect-[4/3] mb-6 bg-black:raisin border border-gray-800">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                        <!-- Placeholder Image -->
+                        <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=800&auto=format&fit=crop" alt="E-commerce Campaign" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute bottom-6 left-6 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            <span class="bg-accent text-black text-xs font-bold px-3 py-1 rounded-full">E-Commerce</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">TechWear Black Friday</h4>
+                            <p class="text-gray-400">Complete automated flow & promo sequence resulting in $45k attributed revenue.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-colors shrink-0">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-400 group-hover:text-accent"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group cursor-pointer reveal delay-100">
+                    <div class="relative overflow-hidden rounded-3xl aspect-[4/3] mb-6 bg-black:raisin border border-gray-800">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                        <!-- Placeholder Image -->
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="SaaS Onboarding" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute bottom-6 left-6 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            <span class="bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">SaaS</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">SaaS Onboarding Flow</h4>
+                            <p class="text-gray-400">A 7-day educational drip campaign that increased user retention by 32%.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-colors shrink-0">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-400 group-hover:text-accent"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-black:jet border-t border-gray-900 relative overflow-hidden">
+        <!-- Background element -->
+        <div class="absolute top-1/2 right-[-10%] w-[600px] h-[600px] bg-accent/5 rounded-full mix-blend-screen filter blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-accent font-semibold tracking-wide uppercase text-sm mb-3">Client Success</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6">What They <span class="text-gradient">Say</span></h3>
+                <p class="text-gray-400 text-lg">Don't just take my word for it. Here is what my clients have to say about working together.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="glass-card p-8 rounded-3xl reveal-left relative group">
+                    <i data-lucide="quote" class="absolute top-6 right-8 w-12 h-12 text-gray-800 group-hover:text-accent/20 transition-colors duration-500"></i>
+                    <div class="flex gap-1 text-accent mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-8 relative z-10 italic">
+                        "Incredible ROI. Within the first 30 days of launching the new automated flows, our email revenue skyrocketed by 140%. Professional, fast, and knows exactly what works."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 overflow-hidden border border-gray-700">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop" alt="Client" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold">David M.</h5>
+                            <p class="text-xs text-gray-500">Founder, D2C Apparel</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-card p-8 rounded-3xl reveal delay-100 relative group">
+                    <i data-lucide="quote" class="absolute top-6 right-8 w-12 h-12 text-gray-800 group-hover:text-accent/20 transition-colors duration-500"></i>
+                    <div class="flex gap-1 text-accent mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-8 relative z-10 italic">
+                        "The design quality is unmatched. Every email perfectly matched our brand aesthetic while somehow improving our click-through rates immensely. A rare talent on Upwork."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 overflow-hidden border border-gray-700">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop" alt="Client" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold">Sarah L.</h5>
+                            <p class="text-xs text-gray-500">Marketing Director, SaaS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-card p-8 rounded-3xl reveal-right delay-200 relative group">
+                    <i data-lucide="quote" class="absolute top-6 right-8 w-12 h-12 text-gray-800 group-hover:text-accent/20 transition-colors duration-500"></i>
+                    <div class="flex gap-1 text-accent mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-8 relative z-10 italic">
+                        "Highly technical and strategic. Cleaned up our messy Mailchimp list, segmented our audience, and improved our deliverability back to 99%. A total lifesaver for our business."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 overflow-hidden border border-gray-700">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Client" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold">James T.</h5>
+                            <p class="text-xs text-gray-500">E-commerce Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-black:eerie border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <!-- Image/Visual -->
+                <div class="relative reveal">
+                    <div class="absolute inset-0 bg-gradient-accent rounded-3xl blur-2xl opacity-20 transform rotate-3"></div>
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop" alt="Workspace" class="relative rounded-3xl object-cover aspect-square md:aspect-[4/5] border border-gray-800 grayscale hover:grayscale-0 transition-all duration-700">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-6 bg-black:raisin border border-gray-700 p-6 rounded-2xl shadow-2xl glass-card hidden md:block">
+                        <p class="text-4xl font-extrabold text-white mb-1">5+</p>
+                        <p class="text-sm text-gray-400">Years of<br>Experience</p>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <div class="reveal delay-100">
+                    <h2 class="text-accent font-semibold tracking-wide uppercase text-sm mb-3">About Me</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">Your Dedicated Email <br><span class="text-gradient">Growth Partner.</span></h3>
+                    
+                    <div class="space-y-4 text-gray-400 text-lg leading-relaxed mb-8">
+                        <p>
+                            I'm a remote freelance email marketing specialist helping businesses unlock the true potential of their subscriber list. Platforms like Upwork and Fiverr have connected me with diverse global clients, ranging from emerging D2C brands to established SaaS companies.
+                        </p>
+                        <p>
+                            My philosophy is simple: beautiful design means nothing if it doesn't convert. I combine striking visuals with psychological triggers and rigorous data analysis to build systems that generate ROI on autopilot.
+                        </p>
+                    </div>
+
+                    <!-- Skills Grid -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i>
+                            <span class="text-gray-300 font-medium">Klaviyo Expert</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i>
+                            <span class="text-gray-300 font-medium">Mailchimp Pro</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i>
+                            <span class="text-gray-300 font-medium">HTML/CSS Coding</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i>
+                            <span class="text-gray-300 font-medium">Copywriting</span>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="inline-flex items-center gap-2 text-white font-bold hover:text-accent transition-colors border-b-2 border-accent pb-1">
+                        Let's work together <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-black:jet border-b border-gray-900 relative">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-accent font-semibold tracking-wide uppercase text-sm mb-3">Got Questions?</h2>
+                <h3 class="text-4xl md:text-5xl font-bold">Frequently Asked <span class="text-gradient">Questions</span></h3>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-2xl reveal">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-bold text-white pr-4">What platforms do you work with?</span>
+                        <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-accent transform transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-gray-400 pb-6 leading-relaxed">I specialize in Klaviyo, Mailchimp, and ActiveCampaign, as these offer the most robust automation and segmentation tools. I'm also highly proficient in custom HTML/CSS for email, which can be imported into almost any ESP (Email Service Provider).</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-2xl reveal delay-100">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-bold text-white pr-4">How do you price your services?</span>
+                        <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-accent transform transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-gray-400 pb-6 leading-relaxed">Pricing is project-based and depends entirely on your needs. A single custom template will cost less than a full-scale account audit and setup of 5 advanced automation flows. Contact me with your requirements, and I'll provide a transparent, custom quote.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-2xl reveal delay-200">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-bold text-white pr-4">Can you design emails from scratch?</span>
+                        <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-accent transform transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-gray-400 pb-6 leading-relaxed">Absolutely. I handle the entire process: strategy, copywriting, UI/UX design (in Figma), and coding the final responsive HTML. You get a completely "done-for-you" deliverable.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-2xl reveal delay-300">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-bold text-white pr-4">Do you offer ongoing management?</span>
+                        <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 text-accent transform transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-gray-400 pb-6 leading-relaxed">Yes, I offer monthly retainer packages for brands looking for continuous optimization, weekly campaign broadcasts, list cleaning, and A/B testing. This is ideal for established E-commerce and SaaS companies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-black:space relative">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-accent opacity-5 blur-[150px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center reveal">
+            <i data-lucide="mail" class="w-12 h-12 text-accent mx-auto mb-6"></i>
+            <h2 class="text-5xl md:text-6xl font-extrabold mb-6 text-white">Ready to <span class="text-gradient">Scale?</span></h2>
+            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Whether you need a complete email marketing overhaul or specific automated flows, I'm currently accepting new projects.
+            </p>
+
+            <form class="glass-card p-8 md:p-12 rounded-3xl text-left border border-gray-800 shadow-2xl bg-black/20 backdrop-blur-md" id="contactForm" onsubmit="event.preventDefault(); alert('Thanks for reaching out! I will get back to you soon.');">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                        <input type="text" id="name" required class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Your Email</label>
+                        <input type="email" id="email" required class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="service" class="block text-sm font-medium text-gray-400 mb-2">Interested In</label>
+                    <select id="service" class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 appearance-none">
+                        <option>Full Account Management</option>
+                        <option>Email Template Design</option>
+                        <option>Automation Setup</option>
+                        <option>Strategy Consultation</option>
+                    </select>
+                </div>
+                <div class="mb-8">
+                    <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Project Details</label>
+                    <textarea id="message" rows="4" required class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gradient-accent btn-glow text-black:space font-bold text-lg py-4 rounded-xl shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black:jet pt-16 pb-8 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold tracking-tighter">
+                        <span class="text-white">Email</span><span class="text-gradient">Pro</span>.
+                    </a>
+                    <p class="text-gray-500 mt-2 text-sm">Elevating brands through strategic email marketing.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <!-- Social Links Placeholder -->
+                    <a href="#" class="w-10 h-10 rounded-full bg-black:raisin border border-gray-800 flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent transition-all">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-black:raisin border border-gray-800 flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent transition-all">
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-black:raisin border border-gray-800 flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent transition-all text-sm font-bold">
+                        Up
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-sm">
+                    &copy; <span id="year"></span> EmailPro. All rights reserved.
+                </p>
+                <div class="flex space-x-4 mt-4 md:mt-0 text-sm text-gray-600">
+                    <a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-300 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                mobileMenu.classList.add('hidden'); // Close mobile menu on click
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll Reveal Animations via Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // Text Rotator in Hero
+        const rotator = document.getElementById('rotator');
+        if(rotator) {
+            let currentIndex = 0;
+            const totalItems = 3; // Clients, Revenue, Growth (4th is duplicate for loop)
+            
+            setInterval(() => {
+                currentIndex++;
+                rotator.style.transform = `translateY(-${currentIndex * 25}%)`;
+                
+                // Reset without animation when reaching the cloned element
+                if (currentIndex === totalItems) {
+                    setTimeout(() => {
+                        rotator.style.transition = 'none';
+                        rotator.style.transform = 'translateY(0)';
+                        currentIndex = 0;
+                        
+                        // Restore transition
+                        setTimeout(() => {
+                            rotator.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        }, 50);
+                    }, 500);
+                }
+            }, 2500);
+        }
+
+        // FAQ Accordion
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                const isOpen = content.classList.contains('open');
+
+                // Close all others
+                document.querySelectorAll('.accordion-content').forEach(c => {
+                    c.style.maxHeight = null;
+                    c.classList.remove('open');
+                });
+                document.querySelectorAll('.faq-toggle i').forEach(i => {
+                    i.style.transform = 'rotate(0deg)';
+                    i.classList.remove('text-white');
+                    i.classList.add('text-accent');
+                });
+
+                // Open clicked if it wasn't open
+                if (!isOpen) {
+                    content.classList.add('open');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(45deg)';
+                    icon.classList.remove('text-accent');
+                    icon.classList.add('text-white');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
